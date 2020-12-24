@@ -3,6 +3,7 @@ if ("ItemGPS" in assignedItems player && !dp_in_progress) then {
 	
 	// get pos player for calculation
 	dpStart = getPos player;
+	timeStart = diag_tickTime;
 
 	// get random Marker
 	_markers = ["dp_0", "dp_1", "dp_2", "dp_3"];
@@ -32,21 +33,20 @@ if ("ItemGPS" in assignedItems player && !dp_in_progress) then {
 		[dpMarker, player] call BIS_fnc_deleteTask;
 
 		// calculate the distance the player treveled
-		_meters = getMarkerPos dpMarker distance dpStart;
-		systemChat (format ["You traveled %1 meters to finish your DP-Mission.",_meters]);
+		_name = name player;
+		_metersTraveled = round (getMarkerPos dpMarker distance dpStart);
+		_timeElapsed = round (diag_tickTime - timeStart);
 
+		systemChat (format ["%1 traveled %2 meters to finish a DP-Mission. It took %3 secounds.", _name, _metersTraveled, _timeElapsed]);
+		
 
 		//Get all available primary weapons from config
-		allPrimaryWeapons = "
-		( getNumber ( _x >> 'scope' ) isEqualTo 2
-		&&
-		{ getText ( _x >> 'simulation' ) isEqualTo 'Weapon'
-		&&
-		{ getNumber ( _x >> 'type' ) isEqualTo 1 } } )
-		"configClasses ( configFile >> "cfgWeapons" );
+		_allPrimaryWeapons = "
+		( getNumber ( _x >> 'scope' ) isEqualTo 2	&& { getText ( _x >> 'simulation' ) isEqualTo 'Weapon' 
+		&& { getNumber ( _x >> 'type' ) isEqualTo 1 } } ) " configClasses ( configFile >> "cfgWeapons" );
 		
 		//Get a random weapon from config and assign it to the player
-		_rndWeapon = configName ( allPrimaryWeapons select (floor (random (count allPrimaryWeapons ))) );
+		_rndWeapon = configName ( _allPrimaryWeapons select (floor (random (count _allPrimaryWeapons ))) );
 		player addWeapon _rndWeapon;
 
 	}, nil, 1, false, true, "", "dp_in_progress",5];
