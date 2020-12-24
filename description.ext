@@ -1,0 +1,7 @@
+respawnButton = 0;
+
+class CfgFunctions {
+    #include "Functions.hpp"
+};
+
+#include "Config_dpMission.hpp"
