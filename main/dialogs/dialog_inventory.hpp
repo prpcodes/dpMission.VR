@@ -10,7 +10,7 @@ $[
 
 class dialog_inventory
 {
-    idd = 1337;
+    idd = -1;
 	movingenable = 0;
     onLoad = "";
     onUnload = "";
