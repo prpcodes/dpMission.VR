@@ -4,4 +4,5 @@ class CfgFunctions {
     #include "Functions.hpp"
 };
 
-#include "Config_dpMission.hpp"
+
+#include "main\config\cfg_master.hpp"
