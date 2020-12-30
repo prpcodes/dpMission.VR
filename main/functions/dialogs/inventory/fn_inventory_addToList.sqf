@@ -2,5 +2,5 @@ params ["_inventory"];
 
 
 
-{lbAdd [1337, _x]} forEach _inventory;
 
+diag_log str _inventory;
