@@ -7,13 +7,12 @@ $[
 	[1601,"btn_close",[1,"Close",["0.510312 * safezoneW + safezoneX","0.731 * safezoneH + safezoneY","0.0790625 * safezoneW","0.0444813 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
 ]
 */
-
 class dialog_inventory
 {
     idd = -1;
 	movingenable = 0;
-    onLoad = "";
-    onUnload = "";
+    onLoad = "_this call life_fnc_inventory_get;";
+    onUnload = "_this call life_fnc_inventory_get;";
 
     class controlsBackground
     {
@@ -34,7 +33,7 @@ class dialog_inventory
         {
             idc = 1600;
             text = "Delete Item"; //--- ToDo: Localize;
-		    onButtonClick = "[0] call life_fnc_inventory_onClick;";
+		    onButtonClick = "_this call life_fnc_inventory_remove;";
             x = 0.410261 * safezoneW + safezoneX;
             y = 0.731926 * safezoneH + safezoneY;
             w = 0.0790625 * safezoneW;
