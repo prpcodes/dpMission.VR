@@ -10,6 +10,6 @@ class Life_Client_Core {
         file = "main\functions\dialogs\inventory";
         class inventory_get {};
         class inventory_onClick {};
-        class inventory_addToList {};
+        class inventory_remove {};
     };
 };
